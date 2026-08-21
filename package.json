@@ -1,5 +1,5 @@
 {
-  "name": "dcs-platform",
+  "name": "poc.web.frameworks.angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -11,6 +11,7 @@
   "private": true,
   "packageManager": "pnpm@11.15.1",
   "dependencies": {
+    "@angular-architects/native-federation": "^22.1.1",
     "@angular/common": "^22.0.0",
     "@angular/compiler": "^22.0.0",
     "@angular/core": "^22.0.0",
@@ -18,15 +19,19 @@
     "@angular/platform-browser": "^22.0.0",
     "@angular/router": "^22.0.0",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "es-module-shims": "^2.8.0"
   },
   "devDependencies": {
-    "@angular/build": "^22.1.2",
+    "@angular/build": "^22.1.3",
     "@angular/cli": "^22.0.7",
     "@angular/compiler-cli": "^22.0.0",
+    "esbuild": "^0.28.2",
     "jsdom": "^28.0.0",
+    "ng-packagr": "^22.1.0",
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",
-    "vitest": "^4.0.8"
+    "vitest": "^4.0.8",
+    "@softarc/native-federation-orchestrator": "^4.6.0"
   }
 }

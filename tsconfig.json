@@ -1,9 +1,14 @@
 /* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+/* To learn more about Angular compiler options.: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
     "noImplicitOverride": true,
+    "paths": {
+      "hmi.plugin.engineering": ["./dist/hmi.plugin.engineering"],
+      "hmi.reusable.web.imp": ["./dist/hmi.reusable.web.imp"],
+      "hmi.reusable.web.ifc": ["./dist/hmi.reusable.web.ifc"]
+    },
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
@@ -22,10 +27,34 @@
   "files": [],
   "references": [
     {
-      "path": "./projects/shell/tsconfig.app.json"
+      "path": "./projects/hmi.application.server/tsconfig.app.json"
     },
     {
-      "path": "./projects/shell/tsconfig.spec.json"
+      "path": "./projects/hmi.application.server/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/hmi.plugin.engineering/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/hmi.plugin.engineering/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/hmi.reusable.web.imp/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/hmi.reusable.web.imp/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/hmi.reusable.web.ifc/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/hmi.reusable.web.ifc/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/plugin.engineering.remote/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/plugin.engineering.remote/tsconfig.spec.json"
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+    "plugins": [
+        {
+            "id": "welcome",
+            "name": "Welcome Plugin",
+            "version": "1.0.0",
+            "remoteEntry": "http://localhost:4300/remoteEntry.js",
+            "remoteName": "welcome",
+            "exposedModule": "./Plugin",
+            "vendor": "DCS",
+            "description": "DCS Welcome plugin"
+        }
+    ]
+}

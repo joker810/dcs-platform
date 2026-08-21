@@ -1,0 +1,1 @@
+export {WelcomePlugin as Plugin} from 'hmi.plugin.engineering';

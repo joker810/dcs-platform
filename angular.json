@@ -6,25 +6,63 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "shell": {
+    "hmi.application.server": {
       "projectType": "application",
       "schematics": {},
-      "root": "projects/shell",
-      "sourceRoot": "projects/shell/src",
+      "root": "projects/hmi.application.server",
+      "sourceRoot": "projects/hmi.application.server/src",
       "prefix": "app",
       "architect": {
         "build": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "cacheExternalArtifacts": true,
+            "tsConfig": "projects/hmi.application.server/tsconfig.federation.json"
+          },
+          "configurations": {
+            "production": {
+              "target": "hmi.application.server:esbuild:production"
+            },
+            "development": {
+              "target": "hmi.application.server:esbuild:development",
+              "dev": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "target": "hmi.application.server:serve-original:development",
+            "tsConfig": "projects/hmi.application.server/tsconfig.federation.json",
+            "rebuildDelay": 500,
+            "cacheExternalArtifacts": true,
+            "dev": true,
+            "devServer": true,
+            "port": 0
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        },
+        "esbuild": {
           "builder": "@angular/build:application",
           "options": {
-            "browser": "projects/shell/src/main.ts",
-            "tsConfig": "projects/shell/tsconfig.app.json",
+            "browser": "projects/hmi.application.server/src/main.ts",
+            "tsConfig": "projects/hmi.application.server/tsconfig.app.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/shell/public"
+                "input": "projects/hmi.application.server/public"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/hmi.application.server/src/assets",
+                "output": "assets"
               }
             ],
-            "styles": ["projects/shell/src/styles.css"]
+            "styles": ["projects/hmi.application.server/src/styles.css"],
+            "polyfills": ["es-module-shims"]
           },
           "configurations": {
             "production": {
@@ -50,20 +88,191 @@
           },
           "defaultConfiguration": "production"
         },
-        "serve": {
+        "serve-original": {
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "shell:build:production"
+              "buildTarget": "hmi.application.server:esbuild:production"
             },
             "development": {
-              "buildTarget": "shell:build:development"
+              "buildTarget": "hmi.application.server:esbuild:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4200
+          }
+        }
+      }
+    },
+    "hmi.plugin.engineering": {
+      "projectType": "library",
+      "root": "projects/hmi.plugin.engineering",
+      "sourceRoot": "projects/hmi.plugin.engineering/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/hmi.plugin.engineering/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/hmi.plugin.engineering/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/hmi.plugin.engineering/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "hmi.reusable.web.imp": {
+      "projectType": "library",
+      "root": "projects/hmi.reusable.web.imp",
+      "sourceRoot": "projects/hmi.reusable.web.imp/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/hmi.reusable.web.imp/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/hmi.reusable.web.imp/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/hmi.reusable.web.imp/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "hmi.reusable.web.ifc": {
+      "projectType": "library",
+      "root": "projects/hmi.reusable.web.ifc",
+      "sourceRoot": "projects/hmi.reusable.web.ifc/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/hmi.reusable.web.ifc/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/hmi.reusable.web.ifc/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/hmi.reusable.web.ifc/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "plugin.engineering.remote": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/plugin.engineering.remote",
+      "sourceRoot": "projects/plugin.engineering.remote/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "cacheExternalArtifacts": true,
+            "tsConfig": "projects/plugin.engineering.remote/tsconfig.federation.json"
+          },
+          "configurations": {
+            "production": {
+              "target": "plugin.engineering.remote:esbuild:production"
+            },
+            "development": {
+              "target": "plugin.engineering.remote:esbuild:development",
+              "dev": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "target": "plugin.engineering.remote:serve-original:development",
+            "tsConfig": "projects/plugin.engineering.remote/tsconfig.federation.json",
+            "rebuildDelay": 500,
+            "cacheExternalArtifacts": true,
+            "dev": true,
+            "devServer": true,
+            "port": 0
+          }
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "esbuild": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/plugin.engineering.remote/src/main.ts",
+            "tsConfig": "projects/plugin.engineering.remote/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets/"
+              }
+            ],
+            "polyfills": ["es-module-shims"]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-original": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "plugin.engineering.remote:esbuild:production"
+            },
+            "development": {
+              "buildTarget": "plugin.engineering.remote:esbuild:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4300
+          }
         }
       }
     }

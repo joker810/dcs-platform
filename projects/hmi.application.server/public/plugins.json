@@ -1,0 +1,11 @@
+{
+    "plugins": [
+        {
+            "id": "welcome",
+            "plugin": {
+                "remoteEntry": "http://localhost:4300/remoteEntry.json",
+                "exposedModule": "./Plugin"
+            }
+        }
+    ]
+}

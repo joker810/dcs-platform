@@ -1,0 +1,14 @@
+<nav>
+
+@for(item of menuItems(); track item.id){
+
+    <a
+        [routerLink]="item.route">
+
+        {{item.text}}
+
+    </a>
+
+}
+
+</nav>

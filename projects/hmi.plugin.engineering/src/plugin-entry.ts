@@ -1,0 +1,1 @@
+// export {WelcomePlugin as plugin } from './welcome.plugin';
