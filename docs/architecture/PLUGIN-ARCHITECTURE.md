@@ -199,6 +199,10 @@ The active provider configuration is in `hmi.application.server/src/app/app.conf
 {
   provide: PLUGIN_LOADER,
   useClass: NativeFederationPluginLoader
+},
+{
+  provide: HMI_LOGGER_TOKEN,
+  useFactory: () => createHmiLogger('hmi.application.server'),
 }
 ```
 
@@ -432,6 +436,14 @@ When changing a single project, prefer the targeted form:
 pnpm exec ng test hmi.application.server
 pnpm exec ng build hmi.application.server
 ```
+
+### Logger service.
+ 
+Logger service has completely replacable service with help of angular's DI Token.Implementation is in logging folder's ifc/imp/hmi.server.
+1. browser console implementation.
+2. Logtape implmentation with two sinks - Console and Remote 
+   - To make logtape work, navigate to `tools\log-server` from root and run `pnpm start` . To start a light weight express server to write into a log file.
+
 
 When adding a plugin, the practical order is:
 

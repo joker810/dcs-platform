@@ -18,3 +18,4 @@ export * from './lib/registry/extension-registry';
 
 //logging
 export * from './lib/logging/hmi-logger-factory';
+export * from './lib/logging/logtape-httpsink';

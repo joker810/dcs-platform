@@ -31,6 +31,7 @@ export default withNativeFederation({
   },
 
   skip: [
+    "@logtape/logtape",
     "rxjs/ajax",
     "rxjs/fetch",
     "rxjs/testing",

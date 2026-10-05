@@ -43,3 +43,7 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+#lock files
+package-lock.json
+pnpm-lock.json

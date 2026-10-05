@@ -1,0 +1,10 @@
+{"receivedAt":"2026-10-05T10:55:32.933Z","timestamp":1791197732481,"level":"info","category":"hmi.application.server","message":["Shell extension points registered"]}
+{"receivedAt":"2026-10-05T10:55:32.938Z","timestamp":1791197732498,"level":"info","category":"hmi.application.server","message":["hmi shell initialized"]}
+{"receivedAt":"2026-10-05T10:55:33.127Z","timestamp":1791197733098,"level":"info","category":"hmi.application.server","message":["Discovered 1 plugin manifests"]}
+{"receivedAt":"2026-10-05T10:55:35.203Z","timestamp":1791197735193,"level":"info","category":"hmi.application.server","message":["Plugin welcome loaded successfully"]}
+{"receivedAt":"2026-10-05T10:55:35.210Z","timestamp":1791197735195,"level":"info","category":"hmi.application.server","message":["Plugin ./Plugin activated"]}
+{"receivedAt":"2026-10-05T10:55:49.197Z","timestamp":1791197749164,"level":"info","category":"hmi.application.server","message":["Shell extension points registered"]}
+{"receivedAt":"2026-10-05T10:55:49.243Z","timestamp":1791197749174,"level":"info","category":"hmi.application.server","message":["hmi shell initialized"]}
+{"receivedAt":"2026-10-05T10:55:49.771Z","timestamp":1791197749753,"level":"info","category":"hmi.application.server","message":["Discovered 1 plugin manifests"]}
+{"receivedAt":"2026-10-05T10:55:51.878Z","timestamp":1791197751870,"level":"info","category":"hmi.application.server","message":["Plugin welcome loaded successfully"]}
+{"receivedAt":"2026-10-05T10:55:51.888Z","timestamp":1791197751872,"level":"info","category":"hmi.application.server","message":["Plugin ./Plugin activated"]}
