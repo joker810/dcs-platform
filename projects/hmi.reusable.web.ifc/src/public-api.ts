@@ -22,3 +22,5 @@ export * from './lib/service/logger';
 
 export * from './lib/route/route-contribution';
 
+export * from './lib/logging/logger'
+

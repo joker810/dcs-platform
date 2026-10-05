@@ -1,8 +1,8 @@
 import { Component, signal , OnInit,inject} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Workbench } from "./workbench/workbench";
-// import {DevelopmentPluginSource} from "../plugin-sources/development-plugin-source";
-import { PluginManager } from 'hmi.reusable.web.imp';
+import { HMI_LOGGER_TOKEN} from 'hmi.reusable.web.imp';
+import { HmiLogger } from 'hmi.reusable.web.ifc';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +10,13 @@ import { PluginManager } from 'hmi.reusable.web.imp';
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App implements OnInit{
+export class App implements OnInit {
   protected readonly title = signal('shell');
-  private pluginManager = inject(PluginManager);
+
+  private logger:HmiLogger = inject(HMI_LOGGER_TOKEN);
 
   ngOnInit(): void {
-    // Delays execution by 5000 milliseconds (5 seconds)
-    setTimeout(() => {
-      console.log("this ran")
-      // this.pluginManager.uninstall('welcome');
-    }, 5000);
+    this.logger.info('hmi shell initialized');
   }
+ 
 }

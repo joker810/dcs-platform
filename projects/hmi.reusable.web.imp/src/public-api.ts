@@ -15,3 +15,6 @@ export * from './lib/registry/service-registry';
 export * from './lib/registry/extension-registry';
 
 //service
+
+//logging
+export * from './lib/logging/hmi-logger-factory';

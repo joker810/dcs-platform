@@ -1,9 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { PluginLifecycleManager } from '../lifecycle/plugin-lifecycle-manager';
-// import { PluginSource } from './plugin-source';// later with injection token maybe
-// import { PluginManifest } from 'hmi.reusable.web.ifc';
 import { PLUGIN_SOURCE } from './plugin-source';
 import { PLUGIN_LOADER } from 'hmi.reusable.web.ifc';
+import { HMI_LOGGER_TOKEN } from '../logging/hmi-logger-factory';
 
 
 @Injectable({
@@ -13,6 +12,7 @@ export class PluginDiscoveryService{
     private source= inject(PLUGIN_SOURCE);
     private lifecycle= inject(PluginLifecycleManager);
     private loader = inject(PLUGIN_LOADER)
+    private readonly logger = inject(HMI_LOGGER_TOKEN);
     
     constructor(
     ){}
@@ -24,32 +24,40 @@ export class PluginDiscoveryService{
   const manifests =
     await this.source.discover();
 
-    console.log(
-      'Discovered manifests:',
-      manifests
-    );
+    this.logger.info(`Discovered ${manifests.length} plugin manifests`, {
+    count: manifests.length,
+  });
 
   for (const manifest of manifests) {
-
-    //plugin
+    
+    try{
+      //plugin
     const plugin =
       await this.loader.load(manifest);
 
-    console.log(
-      'Loaded plugin:',
-      plugin
-    );
-
-    const runtime =
+      const runtime =
       this.lifecycle.install(plugin);
 
     const resolved =
       this.lifecycle.resolve(runtime);
 
-    if (resolved) {
+      if (resolved) {
       this.lifecycle.activate(runtime);
+      this.logger.info(`Plugin ${manifest.plugin.exposedModule} activated`);
+    }else{
+      this.logger.warn(`Plugin ${manifest.plugin.exposedModule} could not be resolved`);
     }
+    }
+    catch(error){
+      // Loader already logged the detailed error. Mark failed, continue.
+      this.logger.error(`Plugin ${manifest.plugin.exposedModule} failed to load — skipping`, {
+        pluginId: manifest.id,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+
   }
+
 }
 
 }
